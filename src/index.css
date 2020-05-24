@@ -1,0 +1,31 @@
+
+
+* {
+  box-sizing: border-box;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100%;
+}
+
+section {
+  margin-top: 200px;
+}
+
+.sectionTitle {
+  margin-bottom: 50px;
+  font-weight: bold;
+}

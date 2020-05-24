@@ -1,0 +1,13 @@
+#formRegistration {
+    border: 1px solid #aaaaaa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.formRegistartion__label {
+    width: 200px;
+}
+
+.formRegistartion__input {
+    margin-bottom: 20px;
+}
