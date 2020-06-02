@@ -1,0 +1,87 @@
+
+.popular {
+    height: 70vh;
+}
+ 
+.popular__bigPost {
+    height: 100%;
+    margin: 15px 0;
+    background-image: url("/img/byke.PNG");
+    background-position: 70%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, .3);
+    background-blend-mode: darken;
+}
+
+.popular__middlePost {
+   width: 100%;
+   margin: 15px;
+    background-image: url("/img/lake.PNG");
+    background-position: 70%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, .3);
+    background-blend-mode: darken;
+}
+
+.popular__smallPost {
+    height: 100%;
+    margin-top: 15px;
+    background-image: url("/img/puma.PNG");
+    background-position: 70%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, .3);
+    background-blend-mode: darken;
+} 
+
+.popular > .container > .row {
+    height: 100%;
+}
+
+.popular__postCategory {
+    padding: 15px;
+}
+
+.popular__postCategory span{
+    padding: 5px 20px;
+    background-color: green;
+    color: #fff;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.popular__middlePost,
+.popular__smallPost,
+.popular__bigPost {
+    border-radius: 10px;
+}
+
+.popular__postInfo{
+    padding: 15px;
+    text-align: left;
+}
+
+.popular__middlePost .popular__postInfo {
+    width: 50%;
+}
+
+.popular__postInfo--title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.popular__postInfo--date {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.popular__postLink{
+    text-align: left;
+}
+
+.popular__postLink:hover {
+    text-decoration: none;
+}

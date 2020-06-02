@@ -1,0 +1,44 @@
+.header__logo--signUp{
+    position: absolute;
+    right: 15px;
+    top: 35%;
+}
+
+.signUpBtn {
+    background-color: black!important;
+    border-radius: 5px;
+    color: #fff;
+    border: 0!important;
+    padding: 8px 20px;
+    font-weight: bold!important;
+}
+
+.signUpBtn:hover {
+    border:1px solid #000;
+    background-color: #fff;
+    color: #000;
+}
+
+.dropdownForm {
+    padding: 20px;
+}
+
+.dropdownInput {
+    padding: 5px 15px;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+}
+
+.dropdownButton {
+    border: 0;
+    padding: 5px 20px;
+    background-color: blue;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.dropdownExtraText {
+    font-size: 14px;
+}
+

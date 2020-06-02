@@ -1,0 +1,13 @@
+.header__navigation{
+    margin: 20px 0;
+}
+
+.header__navigation--link {
+    margin: 0 20px;
+    color: #000;
+    font-weight: bold;
+}
+
+.header__navigation--link:hover {
+    text-decoration: none;
+}

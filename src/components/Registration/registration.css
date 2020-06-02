@@ -1,5 +1,6 @@
 #formRegistration {
-    border: 1px solid #aaaaaa;
+    width: 50%;
+    box-shadow: 0 0 10px #cccccc;
     padding: 15px;
     border-radius: 10px;
 }
@@ -8,6 +9,7 @@
     width: 200px;
 }
 
-.formRegistartion__input {
-    margin-bottom: 20px;
+.formRegistration__content {
+    width: 50%;
+    margin: 0 auto;
 }

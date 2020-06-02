@@ -1,6 +1,10 @@
 import React from 'react'
 import './registration.css'
-import {UserModel} from '../models'
+import {UserModel} from './models'
+import {connect} from 'react-redux'
+import * as actions from '../../actions'
+import TextField from '@material-ui/core/TextField';
+
 
 
 class Registaration extends React.Component<UserModel.Props,UserModel.State> {
@@ -8,9 +12,9 @@ class Registaration extends React.Component<UserModel.Props,UserModel.State> {
         super(props);
         this.state = {
             newUser: {
-                name: '',
-                login: '',
-                password: ''
+                userName: '',
+                userLogin: '',
+                userPassword: ''
             },
             passwordConfirmation: '',
             sessionToken: '',
@@ -18,24 +22,22 @@ class Registaration extends React.Component<UserModel.Props,UserModel.State> {
         }
     }
 
-    userNameOnChange = (e:any) => {
-        this.setState({newUser: { ...this.state.newUser, name: e.target.value} })
-    }
-   
-    userLoginOnChange = (e:any) => {
-        this.setState({newUser: { ...this.state.newUser, login: e.target.value} })
-    }
-
-    userPasswordOnChange = (e:any) => {
-        this.setState({newUser: { ...this.state.newUser, password: e.target.value} })
+    fieldChange = (e:any,fieldName:string) => {
+        this.setState({
+            newUser: {
+                 ...this.state.newUser, 
+                 [fieldName]: e.target.value} 
+        })
     }
 
     userPasswordConfirmationOnChange = (e:any) => {
-        this.setState({passwordConfirmation:e.target.value})
+        this.setState({
+            passwordConfirmation:e.target.value
+        })
     }
 
     comparePasswords = () => {
-        return (this.state.newUser.password == this.state.passwordConfirmation);
+        return (this.state.newUser.userPassword == this.state.passwordConfirmation);
     }
 
     userSignUp = (e:any) => {
@@ -43,10 +45,18 @@ class Registaration extends React.Component<UserModel.Props,UserModel.State> {
         const {newUser, passwordConfirmation, errors} = this.state;
         if(this.comparePasswords()){
             console.log("good passwords");
-            fetch("http://jsonplaceholder.typicode.com/users",{
+              fetch("http://192.168.0.16:8090/api/v1/public/signUp",{
                 method: "POST",
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                  },
                 body: JSON.stringify(newUser)
             })
+            .then(res => res.json())
+            .then(res => {
+                this.props.saveUser(res)
+            })
+            
         }else{
             this.setState({
                errors: [...errors, "password and password confirmation don't match"]
@@ -59,18 +69,33 @@ class Registaration extends React.Component<UserModel.Props,UserModel.State> {
         return (
             <div className="registrationForm d-flex justify-content-center mt-5">
                 <form id="formRegistration" action="">
+                    <div className="formRegistration__content">
                     <h2 className="text-center mb-4">Registration</h2>
-                    <label className="formRegistartion__label" >Имя:</label>
-                    <input className="formRegistartion__input" onChange={this.userNameOnChange} value={this.state.newUser.name} type="text"/>
+                    <TextField  id="standard-basic"
+                                label="Name" 
+                                className="formRegistartion__input mb-3 w-100" 
+                                onChange={(e) => this.fieldChange(e,'userName')} value={this.state.newUser.userName} 
+                                type="text"/>
                     <br/>
-                    <label className="formRegistartion__label" >Логин:</label>
-                    <input className="formRegistartion__input" onChange={this.userLoginOnChange} value={this.state.newUser.login} type="text"/>
+                    <TextField id="standard-basic" 
+                                label="Login" className="formRegistartion__input mb-3 w-100" 
+                                onChange={(e) => this.fieldChange(e,'userLogin')} 
+                                value={this.state.newUser.userLogin} 
+                                type="text"/>
                     <br/>
-                    <label className="formRegistartion__label" >Пароль:</label>
-                    <input className="formRegistartion__input" onChange={this.userPasswordOnChange} value={this.state.newUser.password} type="password"/>
+                    <TextField id="standard-basic" 
+                                label="Password" 
+                                className="formRegistartion__input mb-3 w-100" 
+                                onChange={(e) => this.fieldChange(e,'userPassword')} 
+                                value={this.state.newUser.userPassword} 
+                                type="password"/>
                     <br/>
-                    <label className="formRegistartion__label" >Подтвердите пароль:</label>
-                   <input className="formRegistartion__input"  onChange={this.userPasswordConfirmationOnChange} value={this.state.passwordConfirmation} type="password"/>
+                   <TextField id="standard-basic" 
+                                label="Confirm password" 
+                                className="formRegistartion__input mb-3 w-100"  
+                                onChange={this.userPasswordConfirmationOnChange} 
+                                value={this.state.passwordConfirmation} 
+                                type="password"/>
                     <br/>
                     <div className="text-danger">{this.state.errors.map((item,i) =>
                         <div className="row">
@@ -78,7 +103,8 @@ class Registaration extends React.Component<UserModel.Props,UserModel.State> {
                         </div>
                     )}</div>
                     <div className="formRegistration__button--wrapper">
-                        <button className="formRegistartion__submit" onClick={this.userSignUp} type="button">Sign up</button>
+                        <button className="blogBtn w-100 my-3" onClick={this.userSignUp} type="button">Sign up</button>
+                    </div>
                     </div>
                 </form>
             </div>
@@ -86,4 +112,9 @@ class Registaration extends React.Component<UserModel.Props,UserModel.State> {
     }
 }
 
-export default Registaration
+
+const mapDispatchToProps = (dispatch:any) => ({
+    saveUser: actions.saveUser
+  })
+  
+  export default connect(null, mapDispatchToProps)(Registaration);
